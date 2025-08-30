@@ -17,11 +17,11 @@ RUN apk --no-cache add ca-certificates bash
 RUN addgroup -g 1000 appuser && \
     adduser -D -s /bin/sh -u 1000 -G appuser appuser
 
-WORKDIR /root/
+WORKDIR /home/appuser
 
 COPY --from=builder /app/main .
 
-RUN chown appuser:appuser main
+RUN chmod +x main && chown appuser:appuser main
 
 USER appuser
 
